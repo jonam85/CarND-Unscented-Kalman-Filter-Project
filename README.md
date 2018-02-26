@@ -1,35 +1,57 @@
-# Unscented Kalman Filter Project Starter Code
-Self-Driving Car Engineer Nanodegree Program
+# Unscented Kalman Filter
 
-In this project utilize an Unscented Kalman Filter to estimate the state of a moving object of interest with noisy lidar and radar measurements. Passing the project requires obtaining RMSE values that are lower that the tolerance outlined in the project rubric. 
+Author : Manoj Kumar Subramanian
 
-This project involves the Term 2 Simulator which can be downloaded [here](https://github.com/udacity/self-driving-car-sim/releases)
+------
 
-This repository includes two files that can be used to set up and intall [uWebSocketIO](https://github.com/uWebSockets/uWebSockets) for either Linux or Mac systems. For windows you can use either Docker, VMware, or even [Windows 10 Bash on Ubuntu](https://www.howtogeek.com/249966/how-to-install-and-use-the-linux-bash-shell-on-windows-10/) to install uWebSocketIO. Please see [this concept in the classroom](https://classroom.udacity.com/nanodegrees/nd013/parts/40f38239-66b6-46ec-ae68-03afd8a601c8/modules/0949fca6-b379-42af-a919-ee50aa304e6a/lessons/f758c44c-5e40-4e01-93b5-1a82aa4e044f/concepts/16cf4a78-4fc7-49e1-8621-3450ca938b77) for the required version and installation scripts.
+## Overview
 
-Once the install for uWebSocketIO is complete, the main program can be built and ran by doing the following from the project top directory.
+This repository is as part of my Submission to the Project 2: Unscented Kalman Filter Project for the Udacity Self Driving Car Nano Degree Program Term 2.
 
-1. mkdir build
-2. cd build
-3. cmake ..
-4. make
-5. ./UnscentedKF
+In this project,  an unscented kalman filter is realized in C++ to estimate the state of a moving object of interest with noisy LIDAR and RADAR measurements. This project involves the Term 2 Simulator.
 
-Tips for setting up your environment can be found [here](https://classroom.udacity.com/nanodegrees/nd013/parts/40f38239-66b6-46ec-ae68-03afd8a601c8/modules/0949fca6-b379-42af-a919-ee50aa304e6a/lessons/f758c44c-5e40-4e01-93b5-1a82aa4e044f/concepts/23d376c7-0195-4276-bdf0-e02f1f3c665d)
+------
 
-Note that the programs that need to be written to accomplish the project are src/ukf.cpp, src/ukf.h, tools.cpp, and tools.h
+## Project Goals
 
-The program main.cpp has already been filled out, but feel free to modify it.
+The goals of this project are the following:
 
-Here is the main protcol that main.cpp uses for uWebSocketIO in communicating with the simulator.
+- The code must compile without any errors with cmake and make
+- The project requires obtaining Root Mean Squared Error (RMSE) values for the estimated state variables to be lower than that the tolerance outlined in the project rubric [.09, .10, 0.40, 0.30].
+
+------
+
+## Rubric Points
+
+### Compiling without any errors
+
+I have used Docker for Windows using the DockerToolbox setup and pulled the Udacity's Carnd control kit docker container which constituted the necessary tools required (including cmake, make, gcc & git) for the project.
+
+**<u>Basic Build Instructions</u>**
+
+1. Clone this repo.
+
+2. Make a build directory: `mkdir build && cd build`
+
+3. Compile: `cmake .. && make` 
+
+   - On windows, you may need to run: `cmake .. -G "Unix Makefiles" && make`
+
+4. Run it: `./UnscentedKF` 
+
+   The program should wait listening to port 4567.
+
+**<u>Running the simulator</u>**
+
+Before running the simulator, configure the port forwarding to the port 4567 since the simulator and the c++ program talk using the uWebSocketIO in port 4567.
 
 
-INPUT: values provided by the simulator to the c++ program
+INPUT: values provided by the simulator to the UnscentedKF c++ program
 
-["sensor_measurement"] => the measurment that the simulator observed (either lidar or radar)
+["sensor_measurement"] => the measurement that the simulator observed (either lidar or radar)
 
 
-OUTPUT: values provided by the c++ program to the simulator
+OUTPUT: values provided by the UnscentedKF c++ program to the simulator
 
 ["estimate_x"] <= kalman filter estimated position x
 ["estimate_y"] <= kalman filter estimated position y
@@ -38,55 +60,59 @@ OUTPUT: values provided by the c++ program to the simulator
 ["rmse_vx"]
 ["rmse_vy"]
 
+In the simulator, choose the Project 1/2: EKF and UKF, select the respective dataset and press Start button. The simulator sends the Input to the UnscentedKF c++ program and gets the estimated and rmse values from the program that is visualized in the simulator.
+
 ---
 
-## Other Important Dependencies
-* cmake >= 3.5
-  * All OSes: [click here for installation instructions](https://cmake.org/install/)
-* make >= 4.1 (Linux, Mac), 3.81 (Windows)
-  * Linux: make is installed by default on most Linux distros
-  * Mac: [install Xcode command line tools to get make](https://developer.apple.com/xcode/features/)
-  * Windows: [Click here for installation instructions](http://gnuwin32.sourceforge.net/packages/make.htm)
-* gcc/g++ >= 5.4
-  * Linux: gcc / g++ is installed by default on most Linux distros
-  * Mac: same deal as make - [install Xcode command line tools](https://developer.apple.com/xcode/features/)
-  * Windows: recommend using [MinGW](http://www.mingw.org/)
+### Accuracy of the Estimation
 
-## Basic Build Instructions
+Below are the screenshots of the program executed for the Datasets 1 and 2.
 
-1. Clone this repo.
-2. Make a build directory: `mkdir build && cd build`
-3. Compile: `cmake .. && make`
-4. Run it: `./UnscentedKF` Previous versions use i/o from text files.  The current state uses i/o
-from the simulator.
+It shall be noted that the RSME values are below the project requirements of [.09, .10, 0.40, 0.30].
 
-## Editor Settings
+**Dataset1:**
 
-We've purposefully kept editor configuration files out of this repo in order to
-keep it as simple and environment agnostic as possible. However, we recommend
-using the following settings:
+![Dataset1](Docs/UKF_Dataset_1.png)
 
-* indent using spaces
-* set tab width to 2 spaces (keeps the matrices in source code aligned)
 
-## Code Style
 
-Please stick to [Google's C++ style guide](https://google.github.io/styleguide/cppguide.html) as much as possible.
+**Dataset2:**
 
-## Generating Additional Data
+![Dataset1](Docs/UKF_Dataset_2.png)
 
-This is optional!
+------
 
-If you'd like to generate your own radar and lidar data, see the
-[utilities repo](https://github.com/udacity/CarND-Mercedes-SF-Utilities) for
-Matlab scripts that can generate additional data.
+### Correctness of Algorithm
 
-## Project Instructions and Rubric
+**1. General Process flow:**
 
-This information is only accessible by people who are already enrolled in Term 2
-of CarND. If you are enrolled, see [the project page](https://classroom.udacity.com/nanodegrees/nd013/parts/40f38239-66b6-46ec-ae68-03afd8a601c8/modules/0949fca6-b379-42af-a919-ee50aa304e6a/lessons/c3eb3583-17b2-4d83-abf7-d852ae1b9fff/concepts/f437b8b0-f2d8-43b0-9662-72ac4e4029c1)
-for instructions and the project rubric.
+Since the startup code was already available from the Udacity's repository, the portions, where the TODO items were mentioned, were updated.
 
-## How to write a README
-A well written README file can enhance your project and portfolio.  Develop your abilities to create professional README files by completing [this free course](https://www.udacity.com/course/writing-readmes--ud777).
+The functions for Predict, UpdateLidar and UpdateRadar are implemented in the ukf.cpp with the steps defined in the lectures. The tools.cpp file updated with the calculations for RSME.
+
+In the initialization step of ukf.cpp, the noise factors were added.
+
+**2. First Measurements:**
+
+The item for the first initialization measurements to update the necessary state variables and the co-variance matrix were added. As per the dataset available, the RADAR co-ordinates function to switch between polar to cartesian is added.
+
+**3. Predict and Update:**
+
+For the next measurements, updating the time interval, calling the predict function was implemented. For the update, the methods UpdateLidar and UpdateRadar created in ukf.cpp were used.
+
+**4. Separating LIDAR and RADAR:**
+
+For the updating, since the RADAR measurements were having 3 measurement units and co-ordinates switching between polar and cartesian, the filters UpdateRadar method was used to get the estimated state variables.
+
+For the LIDAR, the Kalman filters UpdateLidar method used to update based on 2 measurement units.
+
+**General considerations:**
+
+As mentioned in the project tips, code sections to avoid divide by zero and maintaining the calculated phi angle within the -pi to +pi range were added.
+
+*<u>NIS Calculations</u>*
+
+As mentioned in the lectures, NIS calculations were performed for RADAR and LIDAR separately to identify the deviations on the process noises and tune the same to match to meet the requirements.
+
+
 
