@@ -48,17 +48,17 @@ Before running the simulator, configure the port forwarding to the port 4567 sin
 
 INPUT: values provided by the simulator to the UnscentedKF c++ program
 
-["sensor_measurement"] => the measurement that the simulator observed (either lidar or radar)
+* ["sensor_measurement"] => the measurement that the simulator observed (either lidar or radar)
 
 
 OUTPUT: values provided by the UnscentedKF c++ program to the simulator
 
-["estimate_x"] <= kalman filter estimated position x
-["estimate_y"] <= kalman filter estimated position y
-["rmse_x"]
-["rmse_y"]
-["rmse_vx"]
-["rmse_vy"]
+* ["estimate_x"] <= kalman filter estimated position x
+* ["estimate_y"] <= kalman filter estimated position y
+* ["rmse_x"]
+* ["rmse_y"]
+* ["rmse_vx"]
+* ["rmse_vy"]
 
 In the simulator, choose the Project 1/2: EKF and UKF, select the respective dataset and press Start button. The simulator sends the Input to the UnscentedKF c++ program and gets the estimated and rmse values from the program that is visualized in the simulator.
 
@@ -72,13 +72,13 @@ It shall be noted that the RSME values are below the project requirements of [.0
 
 **Dataset1:**
 
-![Dataset1](Docs/UKF_Dataset_1.png)
+![Dataset1](Docs/UKF_DataSet_1.png)
 
 
 
 **Dataset2:**
 
-![Dataset1](Docs/UKF_Dataset_2.png)
+![Dataset1](Docs/UKF_DataSet_2.png)
 
 ------
 
